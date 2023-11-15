@@ -1,25 +1,495 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlitchBench</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description" content="GlitchBench: Can large multimodal models detect video game glitches?">
+  <meta name="keywords"
+    content="GPT, GPT-4V, GPT-4, LLM, LLaMA, Llama-20. LLaVA, CLIP, ResNet50, ViT, Representation Learning, Transfer Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GlitchBench</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-23CQCVEDSJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-23CQCVEDSJ');
+  </script>
+
+  <link rel="stylesheet" href="https://gradio.s3-us-west-2.amazonaws.com/2.6.2/static/bundle.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+  <style>
+    ol li {
+      list-style: none;
+      position: relative;
+    }
+
+    ol.alpha {
+      counter-reset: alpha
+    }
+
+    ol.alpha>li:before {
+      counter-increment: alpha;
+      content: "("counter(alpha, lower-alpha)") "
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      /* Added to set equal height rows */
+      grid-gap: 10px;
+    }
+
+    .image-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-grid-text {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 5px;
+
+    }
+
+    .image-grid-text-left {
+      text-align: left;
+      width: 50%;
+    }
+
+    .image-grid-text-right {
+      text-align: right;
+      width: 50%;
+    }
+
+    .correct-prediction {
+      color: green;
+    }
+
+    .wrong-prediction {
+      color: red;
+    }
+
+    .grid-container {
+      display: flex;
+      height: calc(100% - 20px);
+      /* Add this rule */
+    }
+
+    .category-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      /* Change from space-between to space-around */
+      margin-right: 15px;
+      /* Add this rule */
+    }
+
+    .category-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      margin-top: 40px;
+      /* Add this rule to adjust the position */
+    }
+
+    .figure {
+      margin: auto;
+      width: 60%;
+      /* Adjust as needed */
+    }
+
+    .ebox {
+      border: 1px solid black;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .caption {
+      font-style: italic;
+      text-align: center;
+    }
+
+    .darkgreen {
+      color: darkgreen;
+    }
+
+    .darkblue {
+      color: darkblue;
+    }
+
+    .darkred {
+      color: darkred;
+    }
+
+    .ebox {
+      border: 3px solid black;
+      /* Standard border thickness for sides and bottom */
+      border-top-width: 50px;
+      /* Significantly thicker top border */
+      border-radius: 10px;
+      /* Rounded corners */
+      padding: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      /* Needed for absolute positioning of the title */
+    }
+
+    .ebox-title {
+      position: absolute;
+      /* Absolute positioning */
+      top: -50px;
+      /* Position the title over the thick top border */
+      left: 0;
+      width: 100%;
+      /* Title spans the width of the ebox */
+      text-align: center;
+      font-size: 1.5em;
+      /* Adjust the font size as needed */
+      line-height: 50px;
+      /* Line height to vertically center the text in the border */
+      background-color: black;
+      /* Same background color as the border */
+      color: white;
+      /* Text color */
+      border-top-left-radius: 10px;
+      /* Rounded corners at the top */
+      border-top-right-radius: 10px;
+    }
+
+
+    /* Basic table styling */
+    .responsive-table {
+      overflow-x: auto;
+      /* enables horizontal scrolling for smaller screens */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    .citation {
+      font-style: italic;
+    }
+
+    .average {
+      background-color: #fdd9b5;
+      /* Apricot color approximation */
+    }
+
+    .max-agreement {
+      background-color: #add8e6;
+      /* Lightblue color approximation */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 800px) {
+
+      th,
+      td {
+        padding: 6px;
+        font-size: 0.9em;
+        /* Reduce font size for smaller screens */
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      th,
+      td {
+        padding: 4px;
+        font-size: 0.8em;
+        /* Further reduce font size for very small screens */
+      }
+    }
+
+
+
+    /* Rest of the CSS remains the same */
+  </style>
 </head>
+
 <body>
-    <h1>Work in Progress</h1>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title"> Glitch<strong>Bench</strong>:
+              Can large
+              multimodal models detect video game glitches?</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="#">Anonymous Authors</a><sup> </sup></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+            </div>
+            <div class="is-size-5 publication-authors">
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2304.05538.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2304.05538" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/taesiri/ZoomIsAllYouNeed"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/taesiri/imagenet-hard"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+
+            <p>
+              Large multimodal models (LMMs) have evolved from large language
+              models (LLMs) to integrate multiple input modalities, such as
+              visual inputs.
+              This integration augments the capacity of LLMs in tasks requiring
+              visual comprehension and reasoning.
+              However, the extent and limitations of their enhanced abilities
+              are not fully understood.
+              To address this gap, we introduce Glitch<strong>Bench</strong>, a
+              novel benchmark
+              designed to test and evaluate the common-sense reasoning and
+              visual recognition capabilities of large multimodal models.
+              Our dataset is curated from a variety of unusual, infrequent, and
+              glitched scenarios from video game content and aims to challenge
+              both the visual and linguistic reasoning powers of LMMs in
+              detecting and interpreting out-of-the-ordinary events and scene
+              composition.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="ebox">
+        <h2 class="ebox-title">GPT-4V fails to focus on the rain inside the room</h2>
+        <img src="./static/gifs/batman.gif" alt="Raining inside the room" style="width:100%;">
+        <p><strong><span class="darkgreen">Ground truth:</span></strong> It is raining inside the building</p>
+        <p><strong><span class="darkblue">Question:</span></strong> What is wrong with this image?</p>
+        <p><strong><span class="darkred">GPT-4V:</span></strong> There's nothing inherently "wrong" with this image;
+          however, if you're referring to inconsistencies or peculiarities that might not align with the established
+          Batman canon, the red Batman suit is unusual since Batman is traditionally known in black or very dark colors.
+          The use of red could be an artistic choice for the game, an alternate suit available within the game's
+          universe, or indicative of a different character who takes on the Batman mantle.</p>
+      </div>
+      <p class="caption has-text-left">The image depicts a screenshot in which it rains inside a room. While the rain
+        should be what is wrong with the image, GPT-4V fails to reason correctly and instead focuses on the color of
+        Batman's costume. Note that the ground truth is never presented as part of the prompt in our study.</p>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="container is-max-desktop">
+      <div class="table-responsive">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>GPT-4V <span class="citation">[1]</span></th>
+              <th>LLaVA-1.5 7B <span class="citation">[2]</span></th>
+              <th>LLaVA-1.5 13B <span class="citation">[3]</span></th>
+              <th>SPHINX 7B <span class="citation">[4]</span></th>
+              <th>SPHINX 13B <span class="citation">[5]</span></th>
+              <th>InstructBLIP 7B <span class="citation">[6]</span></th>
+              <th>InstructBLIP 13B <span class="citation">[7]</span></th>
+              <th>OtterHD 8B <span class="citation">[8]</span></th>
+              <th>Qwen-VL 10B <span class="citation">[9]</span></th>
+              <th>MiniGPT-v2 7B <span class="citation">[10]</span></th>
+              <th>Fuyu 8B <span class="citation">[11]</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Q1. What is unusual about this image?</strong></td>
+              <td>57.2</td>
+              <td>35.2</td>
+              <td>36.3</td>
+              <td>19.2</td>
+              <td>25.3</td>
+              <td>25.3</td>
+              <td>21.9</td>
+              <td>24.8</td>
+              <td>21.2</td>
+              <td>19.1</td>
+              <td>8.6</td>
+            </tr>
+            <tr>
+              <td><strong>Q2. What is wrong with this image?</strong></td>
+              <td>29.5</td>
+              <td>23.9</td>
+              <td>34.7</td>
+              <td>30.9</td>
+              <td>30.5</td>
+              <td>13.8</td>
+              <td>8.9</td>
+              <td>23.3</td>
+              <td>9.3</td>
+              <td>17.9</td>
+              <td>8.4</td>
+            </tr>
+            <tr class="average">
+              <td><strong>Average</strong></td>
+              <td>43.4</td>
+              <td>29.6</td>
+              <td>35.5</td>
+              <td>25.0</td>
+              <td>27.9</td>
+              <td>19.6</td>
+              <td>15.4</td>
+              <td>24.0</td>
+              <td>15.2</td>
+              <td>18.5</td>
+              <td>8.5</td>
+            </tr>
+            <tr>
+              <td><strong>Q3. Describe the image in detail.</strong></td>
+              <td>64.9</td>
+              <td>28.0</td>
+              <td>30.5</td>
+              <td>17.5</td>
+              <td>21.9</td>
+              <td>16.0</td>
+              <td>11.8</td>
+              <td>21.6</td>
+              <td>14.0</td>
+              <td>16.0</td>
+              <td>7.6</td>
+            </tr>
+            <tr class="max-agreement">
+              <td><strong>Maximum Agreement</strong></td>
+              <td>64.9</td>
+              <td>35.2</td>
+              <td>36.3</td>
+              <td>30.9</td>
+              <td>30.5</td>
+              <td>25.3</td>
+              <td>21.9</td>
+              <td>24.8</td>
+              <td>21.2</td>
+              <td>19.1</td>
+              <td>8.6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is forked from the
+              <a href="https://nerfies.github.io/">Nerfies website</a> and
+              <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
+
 </html>
