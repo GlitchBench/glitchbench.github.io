@@ -239,6 +239,40 @@
       }
     }
 
+    .image-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      /* Space between rows */
+    }
+
+    .gallery-row {
+      display: flex;
+      justify-content: space-between;
+      /* Distributes space between and around items */
+      gap: 10px;
+      /* Space between items in the same row */
+    }
+
+    .gallery-item {
+      flex-basis: 32.5%;
+      /* Each item takes up roughly a third of the row */
+      text-align: center;
+      /* Center the captions */
+    }
+
+    .gallery-item img {
+      width: 100%;
+      /* Make images responsive to the size of the gallery-item */
+      height: auto;
+      /* Maintain aspect ratio */
+    }
+
+    .caption {
+      margin-top: 8px;
+      /* Space between image and caption */
+    }
+
 
 
     /* Rest of the CSS remains the same */
@@ -277,8 +311,7 @@
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="#"
-                    class="external-link button is-normal is-rounded is-dark">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -347,6 +380,43 @@
   </section>
 
   <section class="section">
+    <div class="image-gallery">
+      <!-- Row 1 -->
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="./static/images/1.png" alt="A person stuck in a piece of furniture">
+          <p class="caption">A person stuck in a piece of furniture</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./static/images/2.png" alt="Two people driving an invisible car">
+          <p class="caption">Two people driving an invisible car</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./static/images/3.jpg" alt="A rifle floating in the air">
+          <p class="caption">A rifle floating in the air</p>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="./static/images/slice_114_4rx5gr-0287.png" alt="A person is floating in the air">
+          <p class="caption">A person is floating in the air</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./static/images/slice_55_a42hvj-0223.png" alt="The gun in the hand is missing">
+          <p class="caption">The gun in the hand is missing</p>
+        </div>
+        <div class="gallery-item">
+          <img src="./static/images/5.jpg" alt="The table cover has a placeholder texture">
+          <p class="caption">The table cover has a placeholder texture</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section">
     <div class="container is-max-desktop">
       <div class="ebox">
         <h2 class="ebox-title">GPT-4V fails to focus on the rain inside the room</h2>
@@ -366,7 +436,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="section">
     <div class="container is-max-desktop">
       <div class="table-responsive">
 
