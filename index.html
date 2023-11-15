@@ -145,6 +145,24 @@
       color: darkred;
     }
 
+
+    .darkgreen {
+      color: darkgreen;
+    }
+
+    .darkblue {
+      color: darkblue;
+    }
+
+    .darkred {
+      color: darkred;
+    }
+
+    .darkyellow {
+      color: darkgoldenrod;
+      /* Adjust color as needed */
+    }
+
     .ebox {
       border: 3px solid black;
       /* Standard border thickness for sides and bottom */
@@ -421,45 +439,75 @@
       <div class="ebox">
         <h2 class="ebox-title">GPT-4V fails to focus on the rain inside the room</h2>
         <img src="./static/gifs/batman.gif" alt="Raining inside the room" style="width:100%;">
-        <p><strong><span class="darkgreen">Ground truth:</span></strong> It is raining inside the building</p>
-        <p><strong><span class="darkblue">Question:</span></strong> What is wrong with this image?</p>
-        <p><strong><span class="darkred">GPT-4V:</span></strong> There's nothing inherently "wrong" with this image;
-          however, if you're referring to inconsistencies or peculiarities that might not align with the established
-          Batman canon, the red Batman suit is unusual since Batman is traditionally known in black or very dark colors.
-          The use of red could be an artistic choice for the game, an alternate suit available within the game's
-          universe, or indicative of a different character who takes on the Batman mantle.</p>
+        <p><strong><span class="darkgreen">Ground truth:</span></strong> It is
+          raining inside the building</p>
+        <p><strong><span class="darkblue">Question:</span></strong> What is
+          wrong with this image?</p>
+        <p><strong><span class="darkred">GPT-4V:</span></strong> There's nothing
+          inherently "wrong" with this image;
+          however, if you're referring to inconsistencies or peculiarities that
+          might not align with the established
+          Batman canon, the red Batman suit is unusual since Batman is
+          traditionally known in black or very dark colors.
+          The use of red could be an artistic choice for the game, an alternate
+          suit available within the game's
+          universe, or indicative of a different character who takes on the
+          Batman mantle.</p>
       </div>
-      <p class="caption has-text-left">The image depicts a screenshot in which it rains inside a room. While the rain
-        should be what is wrong with the image, GPT-4V fails to reason correctly and instead focuses on the color of
-        Batman's costume. Note that the ground truth is never presented as part of the prompt in our study.</p>
+      <p class="caption has-text-left">The image depicts a screenshot in which
+        it rains inside a room. While the rain
+        should be what is wrong with the image, GPT-4V fails to reason correctly
+        and instead focuses on the color of
+        Batman's costume. Note that the ground truth is never presented as part
+        of the prompt in our study.</p>
 
     </div>
   </section>
 
   <section class="section">
+
+    <hr>
+
+  </section>
+
+  <section class="section">
     <div class="container is-max-desktop">
+      <h2 class="title is-3">Benchmark Results</h2>
+
       <div class="table-responsive">
 
         <table>
           <thead>
             <tr>
               <th>Question</th>
-              <th>GPT-4V <span class="citation">[1]</span></th>
-              <th>LLaVA-1.5 7B <span class="citation">[2]</span></th>
-              <th>LLaVA-1.5 13B <span class="citation">[3]</span></th>
-              <th>SPHINX 7B <span class="citation">[4]</span></th>
-              <th>SPHINX 13B <span class="citation">[5]</span></th>
-              <th>InstructBLIP 7B <span class="citation">[6]</span></th>
-              <th>InstructBLIP 13B <span class="citation">[7]</span></th>
-              <th>OtterHD 8B <span class="citation">[8]</span></th>
-              <th>Qwen-VL 10B <span class="citation">[9]</span></th>
-              <th>MiniGPT-v2 7B <span class="citation">[10]</span></th>
-              <th>Fuyu 8B <span class="citation">[11]</span></th>
+              <th>GPT-4V <span class="citation"><a href="https://openai.com/research/gpt-4v-system-card"
+                    target="_blank">[1]</a></span></th>
+              <th>LLaVA-1.5 7B <span class="citation"><a href="https://arxiv.org/abs/2310.03744"
+                    target="_blank">[2]</a></span></th>
+              <th>LLaVA-1.5 13B <span class="citation"><a href="https://arxiv.org/abs/2310.03744"
+                    target="_blank">[3]</a></span></th>
+              <th>SPHINX 7B <span class="citation"><a href="https://arxiv.org/abs/2311.07575"
+                    target="_blank">[4]</a></span></th>
+              <th>SPHINX 13B <span class="citation"><a href="https://arxiv.org/abs/2311.07575"
+                    target="_blank">[5]</a></span></th>
+              <th>InstructBLIP 7B <span class="citation"><a href="https://arxiv.org/abs/2305.06500"
+                    target="_blank">[6]</a></span></th>
+              <th>InstructBLIP 13B <span class="citation"><a href="https://arxiv.org/abs/2305.06500"
+                    target="_blank">[7]</a></span></th>
+              <th>OtterHD 8B <span class="citation"><a href="https://arxiv.org/abs/2311.04219"
+                    target="_blank">[8]</a></span></th>
+              <th>Qwen-VL 10B <span class="citation"><a href="https://arxiv.org/abs/2308.12966"
+                    target="_blank">[9]</a></span></th>
+              <th>MiniGPT-v2 7B <span class="citation"><a href="https://arxiv.org/abs/2310.09478"
+                    target="_blank">[10]</a></span></th>
+              <th>Fuyu 8B <span class="citation"><a href="https://www.adept.ai/blog/fuyu-8b"
+                    target="_blank">[11]</a></span></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Q1. What is unusual about this image?</strong></td>
+              <td><strong>Q1. What is unusual about this
+                  image?</strong></td>
               <td>57.2</td>
               <td>35.2</td>
               <td>36.3</td>
@@ -535,6 +583,77 @@
 
   </section>
 
+  <section class="section">
+
+    <hr>
+
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Qualitative Observations</h2>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="ebox">
+        <h2 class="ebox-title">GPT-4V Analysis on Facial Features</h2>
+        <img src="./static/images/best-glitches-video-games-header.jpeg"
+          alt="Character with incorrectly rendered face mesh" style="width:100%;">
+        <p><strong><span class="darkgreen">Ground truth:</span></strong> The character's face mesh is not rendered
+          correctly.</p>
+        <p><strong><span class="darkblue">Question:</span></strong> What is wrong with this image?</p>
+        <p><strong><span class="darkred">GPT-4V:</span></strong> The image appears to be from a video game or some form
+          of CGI (computer-generated imagery) with very high-quality rendering. The characters depicted are very
+          lifelike, suggesting a significant level of detail and investment in graphics. However, there's nothing
+          inherently "wrong" with the image in terms of content; it seems to portray a close-up moment between two
+          characters.</p>
+        <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong> No, the generated description does not
+          accurately convey the key information and themes of the ground truth. While it acknowledges the high quality
+          of the graphics and the lifelike nature of the characters, it does not address the issue of the character's
+          face mesh not being rendered correctly, which is the main focus of the ground truth.</p>
+      </div>
+      <div class="column is-four-fifths has-text-centered">
+        <div class="content">
+          <p class="caption has-text-left"> One of the several cases in which GPT-4V fails to detect a problem with
+            facial features.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="ebox">
+        <h2 class="ebox-title">GPT-4V Analysis on Basketball Image</h2>
+        <img src="./static/images/basketball.png" alt="Basketball player with unusual hand position"
+          style="width:100%;">
+        <p><strong><span class="darkgreen">Ground truth:</span></strong> The left hand of the basketball player is in an
+          unusual position and is stretched backward.</p>
+        <p><strong><span class="darkblue">Question:</span></strong> What is unusual about this image?</p>
+        <p><strong><span class="darkred">GPT-4V:</span></strong> The image appears to be a screenshot from a basketball
+          video game, possibly from the NBA 2K series. The unusual aspects of this image include: One of the players has
+          a bright orange beard that stands out from the rest. Another player seems to be kissing or blowing at the
+          basketball, which is not a typical basketball move or gesture. The characters and graphics look
+          computer-generated, which indicates it's from a video game rather than a real-life game.<br><br>
+          The interface at the bottom of the image shows various controls and buttons, which further suggests that it's
+          from a video game.</p>
+        <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong> No, the generated description does not
+          accurately convey the key information and themes of the ground truth. The ground truth focuses on the unusual
+          position of the basketball player's left hand, while the generated description highlights three unusual
+          aspects of the image, none of which relate to the player's hand position.</p>
+      </div>
+      <div class="columns is-centered">
+        <p class="caption has-text-left"> The image shows a basketball player with an unnatural hand position. GPT-4V
+          fails to
+          focus on small details such as body configuration and is unable to report this issue.</p>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
@@ -542,7 +661,8 @@
           <div class="content">
             <p>
               This website is forked from the
-              <a href="https://nerfies.github.io/">Nerfies website</a> and
+              <a href="https://nerfies.github.io/">Nerfies
+                website</a> and
               <a href="https://github.com/nerfies/nerfies.github.io">source
                 code</a>
             </p>
