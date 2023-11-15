@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="GlitchBench: Can large multimodal models detect video game glitches?">
-  <meta name="keywords"
-    content="GPT, GPT-4V, GPT-4, LLM, LLaMA, Llama-20. LLaVA, CLIP, ResNet50, ViT, Representation Learning, Transfer Learning">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GlitchBench</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+      content="GlitchBench: Can large multimodal models detect video game glitches?">
+    <meta name="keywords"
+      content="GPT, GPT-4V, GPT-4, LLM, LLaMA, Llama-20. LLaVA, CLIP, ResNet50, ViT, Representation Learning, Transfer Learning">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GlitchBench</title>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-23CQCVEDSJ"></script>
-  <script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-23CQCVEDSJ"></script>
+    <script>
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -21,24 +22,29 @@
     gtag('config', 'G-23CQCVEDSJ');
   </script>
 
-  <link rel="stylesheet" href="https://gradio.s3-us-west-2.amazonaws.com/2.6.2/static/bundle.css">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.ico">
+    <link rel="stylesheet"
+      href="https://gradio.s3-us-west-2.amazonaws.com/2.6.2/static/bundle.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.ico">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
-  <style>
+    <style>
     ol li {
       list-style: none;
       position: relative;
@@ -339,6 +345,11 @@
       /* Other existing th, td styles */
     }
 
+    td.rnumber {
+      text-align: right !important;
+    }
+
+
     /* Responsive adjustments for smaller screens */
     @media (max-width: 800px) {
 
@@ -411,19 +422,53 @@
       /* Minimum width of the table */
     }
 
+    .dataset-name {
+      font-weight: bold;
+      /* Add any other specific styling if needed */
+    }
+
+
+    .dataset-name {
+      font-weight: bold;
+      /* Additional styling if needed */
+    }
+
+    .color-rect {
+      font-weight: bold;
+      color: black;
+      /* Black text for all .color-rect */
+      padding: 2px 4px;
+      /* Optional padding for better visibility */
+      border-radius: 4px;
+      /* Optional rounded corners */
+    }
+
+    .color-rect.apricot {
+      background-color: rgb(255, 224, 178);
+      /* Apricot background */
+    }
+
+    .color-rect.lightblue {
+      background-color: rgb(173, 216, 230);
+      /* Light Sky Blue background */
+    }
+
+
+
     /* Continue with the rest of the previously added styles */
   </style>
-</head>
+  </head>
 
-<body>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu"
+          aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
     </div>
   </nav>
   <section class="hero">
@@ -447,7 +492,8 @@
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <a href="#"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -465,7 +511,8 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://huggingface.co/datasets/glitchbench/GlitchBench"
+                  <a
+                    href="https://huggingface.co/datasets/glitchbench/GlitchBench"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="far fa-images"></i>
@@ -520,11 +567,13 @@
       <!-- Row 1 -->
       <div class="gallery-row">
         <div class="gallery-item">
-          <img src="./static/images/1.png" alt="A person stuck in a piece of furniture">
+          <img src="./static/images/1.png"
+            alt="A person stuck in a piece of furniture">
           <p class="caption">A person stuck in a piece of furniture</p>
         </div>
         <div class="gallery-item">
-          <img src="./static/images/2.png" alt="Two people driving an invisible car">
+          <img src="./static/images/2.png"
+            alt="Two people driving an invisible car">
           <p class="caption">Two people driving an invisible car</p>
         </div>
         <div class="gallery-item">
@@ -536,15 +585,18 @@
       <!-- Row 2 -->
       <div class="gallery-row">
         <div class="gallery-item">
-          <img src="./static/images/slice_114_4rx5gr-0287.png" alt="A person is floating in the air">
+          <img src="./static/images/slice_114_4rx5gr-0287.png"
+            alt="A person is floating in the air">
           <p class="caption">A person is floating in the air</p>
         </div>
         <div class="gallery-item">
-          <img src="./static/images/slice_55_a42hvj-0223.png" alt="The gun in the hand is missing">
+          <img src="./static/images/slice_55_a42hvj-0223.png"
+            alt="The gun in the hand is missing">
           <p class="caption">The gun in the hand is missing</p>
         </div>
         <div class="gallery-item">
-          <img src="./static/images/5.jpg" alt="The table cover has a placeholder texture">
+          <img src="./static/images/5.jpg"
+            alt="The table cover has a placeholder texture">
           <p class="caption">The table cover has a placeholder texture</p>
         </div>
       </div>
@@ -556,7 +608,8 @@
     <div class="container is-max-desktop">
       <div class="ebox">
         <h2 class="ebox-title">GPT-4V fails to focus on the rain inside the room</h2>
-        <img src="./static/gifs/batman.gif" alt="Raining inside the room" style="width:100%;">
+        <img src="./static/gifs/batman.gif" alt="Raining inside the room"
+          style="width:100%;">
         <p><strong><span class="darkgreen">Ground truth:</span></strong> It is
           raining inside the building</p>
         <p><strong><span class="darkblue">Question:</span></strong> What is
@@ -582,41 +635,65 @@
     </div>
   </section>
 
-  <section class="section">
+  <hr>
 
-    <hr>
-
-  </section>
   <section class="section">
     <div class="container is-max-desktop">
+      <h1 class="title is-3"> Benchmark Results</h1>
       <div class="columns is-centered">
         <div class="column is-full">
+          <p class="caption has-text-left">
+            Performance of various LMMs on Glitch<span class="dataset-name">Bench</span>.
+            Numbers highlighted in <span class="color-rect apricot">
+              &nbsp;&nbsp;&nbsp;&nbsp; </span>
+            represent the average results of Q1 and Q2, which are the main
+            results of the benchmark.
+            Numbers related to Q3 serve as a visual perception test to measure
+            the ability of models to report glitches in a relaxed manner.
+            Numbers highlighted in <span class="color-rect lightblue">
+              &nbsp;&nbsp;&nbsp;&nbsp; </span>
+            show the maximum agreement achievable with ground truth as perceived
+            by Llama-2's judgment (%).
+          </p>
+
           <div class="table-container">
-            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <table
+              class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
               <thead>
                 <tr>
                   <th>Question</th>
-                  <th>GPT-4V <span class="citation"><a href="https://openai.com/research/gpt-4v-system-card"
+                  <th>GPT-4V <span class="citation"><a
+                        href="https://openai.com/research/gpt-4v-system-card"
                         target="_blank">[1]</a></span></th>
-                  <th>LLaVA-1.5 7B <span class="citation"><a href="https://arxiv.org/abs/2310.03744"
+                  <th>LLaVA-1.5 7B <span class="citation"><a
+                        href="https://arxiv.org/abs/2310.03744"
                         target="_blank">[2]</a></span></th>
-                  <th>LLaVA-1.5 13B <span class="citation"><a href="https://arxiv.org/abs/2310.03744"
+                  <th>LLaVA-1.5 13B <span class="citation"><a
+                        href="https://arxiv.org/abs/2310.03744"
                         target="_blank">[3]</a></span></th>
-                  <th>SPHINX 7B <span class="citation"><a href="https://arxiv.org/abs/2311.07575"
+                  <th>SPHINX 7B <span class="citation"><a
+                        href="https://arxiv.org/abs/2311.07575"
                         target="_blank">[4]</a></span></th>
-                  <th>SPHINX 13B <span class="citation"><a href="https://arxiv.org/abs/2311.07575"
+                  <th>SPHINX 13B <span class="citation"><a
+                        href="https://arxiv.org/abs/2311.07575"
                         target="_blank">[5]</a></span></th>
-                  <th>InstructBLIP 7B <span class="citation"><a href="https://arxiv.org/abs/2305.06500"
+                  <th>InstructBLIP 7B <span class="citation"><a
+                        href="https://arxiv.org/abs/2305.06500"
                         target="_blank">[6]</a></span></th>
-                  <th>InstructBLIP 13B <span class="citation"><a href="https://arxiv.org/abs/2305.06500"
+                  <th>InstructBLIP 13B <span class="citation"><a
+                        href="https://arxiv.org/abs/2305.06500"
                         target="_blank">[7]</a></span></th>
-                  <th>OtterHD 8B <span class="citation"><a href="https://arxiv.org/abs/2311.04219"
+                  <th>OtterHD 8B <span class="citation"><a
+                        href="https://arxiv.org/abs/2311.04219"
                         target="_blank">[8]</a></span></th>
-                  <th>Qwen-VL 10B <span class="citation"><a href="https://arxiv.org/abs/2308.12966"
+                  <th>Qwen-VL 10B <span class="citation"><a
+                        href="https://arxiv.org/abs/2308.12966"
                         target="_blank">[9]</a></span></th>
-                  <th>MiniGPT-v2 7B <span class="citation"><a href="https://arxiv.org/abs/2310.09478"
+                  <th>MiniGPT-v2 7B <span class="citation"><a
+                        href="https://arxiv.org/abs/2310.09478"
                         target="_blank">[10]</a></span></th>
-                  <th>Fuyu 8B <span class="citation"><a href="https://www.adept.ai/blog/fuyu-8b"
+                  <th>Fuyu 8B <span class="citation"><a
+                        href="https://www.adept.ai/blog/fuyu-8b"
                         target="_blank">[11]</a></span></th>
                 </tr>
               </thead>
@@ -624,195 +701,188 @@
                 <tr>
                   <td><strong>Q1. What is unusual about this
                       image?</strong></td>
-                  <td>57.2</td>
-                  <td>35.2</td>
-                  <td>36.3</td>
-                  <td>19.2</td>
-                  <td>25.3</td>
-                  <td>25.3</td>
-                  <td>21.9</td>
-                  <td>24.8</td>
-                  <td>21.2</td>
-                  <td>19.1</td>
-                  <td>8.6</td>
+                  <td class="rnumber">57.2</td>
+                  <td class="rnumber">35.2</td>
+                  <td class="rnumber">36.3</td>
+                  <td class="rnumber">19.2</td>
+                  <td class="rnumber">25.3</td>
+                  <td class="rnumber">25.3</td>
+                  <td class="rnumber">21.9</td>
+                  <td class="rnumber">24.8</td>
+                  <td class="rnumber">21.2</td>
+                  <td class="rnumber">19.1</td>
+                  <td class="rnumber">8.6</td>
                 </tr>
                 <tr>
                   <td><strong>Q2. What is wrong with this image?</strong></td>
-                  <td>29.5</td>
-                  <td>23.9</td>
-                  <td>34.7</td>
-                  <td>30.9</td>
-                  <td>30.5</td>
-                  <td>13.8</td>
-                  <td>8.9</td>
-                  <td>23.3</td>
-                  <td>9.3</td>
-                  <td>17.9</td>
-                  <td>8.4</td>
+                  <td class="rnumber">29.5</td>
+                  <td class="rnumber">23.9</td>
+                  <td class="rnumber">34.7</td>
+                  <td class="rnumber">30.9</td>
+                  <td class="rnumber">30.5</td>
+                  <td class="rnumber">13.8</td>
+                  <td class="rnumber">8.9</td>
+                  <td class="rnumber">23.3</td>
+                  <td class="rnumber">9.3</td>
+                  <td class="rnumber">17.9</td>
+                  <td class="rnumber">8.4</td>
                 </tr>
                 <tr class="average">
                   <td><strong>Average</strong></td>
-                  <td>43.4</td>
-                  <td>29.6</td>
-                  <td>35.5</td>
-                  <td>25.0</td>
-                  <td>27.9</td>
-                  <td>19.6</td>
-                  <td>15.4</td>
-                  <td>24.0</td>
-                  <td>15.2</td>
-                  <td>18.5</td>
-                  <td>8.5</td>
+                  <td class="rnumber">43.4</td>
+                  <td class="rnumber">29.6</td>
+                  <td class="rnumber">35.5</td>
+                  <td class="rnumber">25.0</td>
+                  <td class="rnumber">27.9</td>
+                  <td class="rnumber">19.6</td>
+                  <td class="rnumber">15.4</td>
+                  <td class="rnumber">24.0</td>
+                  <td class="rnumber">15.2</td>
+                  <td class="rnumber">18.5</td>
+                  <td class="rnumber">8.5</td>
                 </tr>
                 <tr>
                   <td><strong>Q3. Describe the image in detail.</strong></td>
-                  <td>64.9</td>
-                  <td>28.0</td>
-                  <td>30.5</td>
-                  <td>17.5</td>
-                  <td>21.9</td>
-                  <td>16.0</td>
-                  <td>11.8</td>
-                  <td>21.6</td>
-                  <td>14.0</td>
-                  <td>16.0</td>
-                  <td>7.6</td>
+                  <td class="rnumber">64.9</td>
+                  <td class="rnumber">28.0</td>
+                  <td class="rnumber">30.5</td>
+                  <td class="rnumber">17.5</td>
+                  <td class="rnumber">21.9</td>
+                  <td class="rnumber">16.0</td>
+                  <td class="rnumber">11.8</td>
+                  <td class="rnumber">21.6</td>
+                  <td class="rnumber">14.0</td>
+                  <td class="rnumber">16.0</td>
+                  <td class="rnumber">7.6</td>
                 </tr>
                 <tr class="max-agreement">
                   <td><strong>Maximum Agreement</strong></td>
-                  <td>64.9</td>
-                  <td>35.2</td>
-                  <td>36.3</td>
-                  <td>30.9</td>
-                  <td>30.5</td>
-                  <td>25.3</td>
-                  <td>21.9</td>
-                  <td>24.8</td>
-                  <td>21.2</td>
-                  <td>19.1</td>
-                  <td>8.6</td>
+                  <td class="rnumber">64.9</td>
+                  <td class="rnumber">35.2</td>
+                  <td class="rnumber">36.3</td>
+                  <td class="rnumber">30.9</td>
+                  <td class="rnumber">30.5</td>
+                  <td class="rnumber">25.3</td>
+                  <td class="rnumber">21.9</td>
+                  <td class="rnumber">24.8</td>
+                  <td class="rnumber">21.2</td>
+                  <td class="rnumber">19.1</td>
+                  <td class="rnumber">8.6</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-  </section>
+      </section>
 
-  <section class="section">
+      <hr>
 
-    <hr>
+      <section class="section">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3">Qualitative Observations</h2>
 
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Qualitative Observations</h2>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="ebox">
-        <h2 class="ebox-title">GPT-4V fails to recognize the absence of
-          facial skin</h2>
-        <img src="./static/images/best-glitches-video-games-header.jpeg"
-          alt="Character with incorrectly rendered face mesh" style="width:100%;">
-        <p><strong><span class="darkgreen">Ground truth:</span></strong> The
-          character's face mesh is not rendered
-          correctly.</p>
-        <p><strong><span class="darkblue">Question:</span></strong> What is
-          wrong with this image?</p>
-        <p><strong><span class="darkred">GPT-4V:</span></strong> The image
-          appears to be from a video game or some form
-          of CGI (computer-generated imagery) with very high-quality
-          rendering. The characters depicted are very
-          lifelike, suggesting a significant level of detail and investment
-          in graphics. However, there's nothing
-          inherently "wrong" with the image in terms of content; it seems to
-          portray a close-up moment between two
-          characters.</p>
-        <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong>
-          No, the generated description does not
-          accurately convey the key information and themes of the ground
-          truth. While it acknowledges the high quality
-          of the graphics and the lifelike nature of the characters, it does
-          not address the issue of the character's
-          face mesh not being rendered correctly, which is the main focus of
-          the ground truth.</p>
-      </div>
-      <div class="columns is-centered">
-        <p class="caption has-text-left"> One of the several cases in which
-          GPT-4V fails to detect a problem with
-          facial features.</p>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="ebox">
-        <h2 class="ebox-title">GPT-4V fails to detect unnatural body
-          configuration</h2>
-        <img src="./static/images/basketball.png" alt="Basketball player with unusual hand position"
-          style="width:100%;">
-        <p><strong><span class="darkgreen">Ground truth:</span></strong> The
-          left hand of the basketball player is in an
-          unusual position and is stretched backward.</p>
-        <p><strong><span class="darkblue">Question:</span></strong> What is
-          unusual about this image?</p>
-        <p><strong><span class="darkred">GPT-4V:</span></strong> The image
-          appears to be a screenshot from a basketball
-          video game, possibly from the NBA 2K series. The unusual aspects of
-          this image include: One of the players has
-          a bright orange beard that stands out from the rest. Another player
-          seems to be kissing or blowing at the
-          basketball, which is not a typical basketball move or gesture. The
-          characters and graphics look
-          computer-generated, which indicates it's from a video game rather
-          than a real-life game.<br><br>
-          The interface at the bottom of the image shows various controls and
-          buttons, which further suggests that it's
-          from a video game.</p>
-        <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong>
-          No, the generated description does not
-          accurately convey the key information and themes of the ground
-          truth. The ground truth focuses on the unusual
-          position of the basketball player's left hand, while the generated
-          description highlights three unusual
-          aspects of the image, none of which relate to the player's hand
-          position.</p>
-      </div>
-      <div class="columns is-centered">
-        <p class="caption has-text-left"> The image shows a basketball player
-          with an unnatural hand position. GPT-4V
-          fails to
-          focus on small details such as body configuration and is unable to
-          report this issue.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-            <p>
-              This website is forked from the
-              <a href="https://nerfies.github.io/">Nerfies
-                website</a> and
-              <a href="https://github.com/nerfies/nerfies.github.io">source
-                code</a>
-            </p>
+          <div class="ebox">
+            <h2 class="ebox-title">GPT-4V fails to recognize the absence of
+              facial skin</h2>
+            <img src="./static/images/best-glitches-video-games-header.jpeg"
+              alt="Character with incorrectly rendered face mesh"
+              style="width:100%;">
+            <p><strong><span class="darkgreen">Ground truth:</span></strong> The
+              character's face mesh is not rendered
+              correctly.</p>
+            <p><strong><span class="darkblue">Question:</span></strong> What is
+              wrong with this image?</p>
+            <p><strong><span class="darkred">GPT-4V:</span></strong> The image
+              appears to be from a video game or some form
+              of CGI (computer-generated imagery) with very high-quality
+              rendering. The characters depicted are very
+              lifelike, suggesting a significant level of detail and investment
+              in graphics. However, there's nothing
+              inherently "wrong" with the image in terms of content; it seems to
+              portray a close-up moment between two
+              characters.</p>
+            <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong>
+              No, the generated description does not
+              accurately convey the key information and themes of the ground
+              truth. While it acknowledges the high quality
+              of the graphics and the lifelike nature of the characters, it does
+              not address the issue of the character's
+              face mesh not being rendered correctly, which is the main focus of
+              the ground truth.</p>
+          </div>
+          <div class="columns is-centered">
+            <p class="caption has-text-left"> One of the several cases in which
+              GPT-4V fails to detect a problem with
+              facial features.</p>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-</body>
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="ebox">
+          <h2 class="ebox-title">GPT-4V fails to detect unnatural body
+            configuration</h2>
+          <img src="./static/images/basketball.png"
+            alt="Basketball player with unusual hand position"
+            style="width:100%;">
+          <p><strong><span class="darkgreen">Ground truth:</span></strong> The
+            left hand of the basketball player is in an
+            unusual position and is stretched backward.</p>
+          <p><strong><span class="darkblue">Question:</span></strong> What is
+            unusual about this image?</p>
+          <p><strong><span class="darkred">GPT-4V:</span></strong> The image
+            appears to be a screenshot from a basketball
+            video game, possibly from the NBA 2K series. The unusual aspects of
+            this image include: One of the players has
+            a bright orange beard that stands out from the rest. Another player
+            seems to be kissing or blowing at the
+            basketball, which is not a typical basketball move or gesture. The
+            characters and graphics look
+            computer-generated, which indicates it's from a video game rather
+            than a real-life game.<br><br>
+            The interface at the bottom of the image shows various controls and
+            buttons, which further suggests that it's
+            from a video game.</p>
+          <p><strong><span class="darkyellow">Llama-2 (Judge):</span></strong>
+            No, the generated description does not
+            accurately convey the key information and themes of the ground
+            truth. The ground truth focuses on the unusual
+            position of the basketball player's left hand, while the generated
+            description highlights three unusual
+            aspects of the image, none of which relate to the player's hand
+            position.</p>
+        </div>
+        <div class="columns is-centered">
+          <p class="caption has-text-left"> The image shows a basketball player
+            with an unnatural hand position. GPT-4V
+            fails to
+            focus on small details such as body configuration and is unable to
+            report this issue.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is forked from the
+                <a href="https://nerfies.github.io/">Nerfies
+                  website</a> and
+                <a href="https://github.com/nerfies/nerfies.github.io">source
+                  code</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
 
 </html>
