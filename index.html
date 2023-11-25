@@ -44,6 +44,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
+    <script
+      type="module"
+      src="https://gradio.s3-us-west-2.amazonaws.com/4.7.1/gradio.js"></script>
+
     <style>
     ol li {
       list-style: none;
@@ -514,14 +518,27 @@
                     <span>Code</span>
                   </a>
                 </span>
+                <!-- Dataset Link. -->
                 <span class="link-block">
                   <a
                     href="https://huggingface.co/datasets/glitchbench/GlitchBench"
+                    target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="far fa-images"></i>
+                      <p style="font-size:20px">🤗</p>
                     </span>
                     <span>Dataset</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a
+                    href="https://huggingface.co/spaces/glitchbench/GlitchBrowser"
+                    target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <p style="font-size:20px">🤗</p>
+                    </span>
+                    <span>Dataset Browser</span>
                   </a>
                 </span>
 
@@ -866,6 +883,17 @@
             focus on small details such as body configuration and is unable to
             report this issue.</p>
         </div>
+      </div>
+    </section>
+
+    <br>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Dataset Explorer</h2>
+
+        <gradio-app src="https://glitchbench-glitchbrowser.hf.space"></gradio-app>
+
       </div>
     </section>
 
